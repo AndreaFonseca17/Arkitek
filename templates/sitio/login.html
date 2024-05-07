@@ -1,0 +1,57 @@
+{% include 'sitio/cabecera.html' %}
+
+<head>
+  <!-- Enlace al archivo CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+</head>
+
+<body class="text-center">
+
+<main class="form-signin">
+  <form action="/login" method="POST"> <!-- Especifica la ruta de acción para enviar el formulario a Flask -->
+    <img class="mb-4" src="/img/logo.png" alt="" width="72" height="77">
+    <h1 class="h3 mb-3 fw-normal">INICIAR SESION</h1>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            {% if mensaje %} 
+              <div class="alert alert-danger" role="alert">
+                <strong>{{ mensaje }}</strong> Intentelo mas tarde
+              </div>
+            {% endif %} 
+          <div class="col-md-6 mt-5">
+            <div class="card">
+              <div class="card-header">
+                Login
+              </div>
+              <div class="card-body">
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+                    <!-- Añade el atributo name con el mismo valor que el id para enviar el dato al servidor -->
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                    <!-- Añade el atributo name con el mismo valor que el id para enviar el dato al servidor -->
+                  </div>
+
+                  <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="remember-me">
+                    <label class="form-check-label" for="remember-me">Remember me</label>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary">Sign in</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bootstrap JS -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-5qIZlXfqc0dqcSjqtk65HFLEQoRQA35HZZtEuW6Xr9nKL4u7+mj0VmW9CUzzR/0h" crossorigin="anonymous"></script>
+      </body>
+{% include 'sitio/pie.html' %}
+

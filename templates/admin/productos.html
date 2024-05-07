@@ -1,0 +1,95 @@
+{% include 'admin/cabecera.html' %}
+<br>
+
+<div class="container">
+    <div class="row">
+        <div
+            class="col-md-5"
+        ><div class="card">
+    <div class="card-header">Datos de Productos</div>
+    <div class="card-body">
+        <form action="/admin/productos/guardar" method="post"enctype="multipart/form-data" >
+            
+            <div class="mb-3">
+                <label for="" class="form-label">Productos:</label>
+                <input type="txtProductos" class="form-control" name="txtProductos" id="txtProductos"aria-describedby="helpId"placeholder="Caracteristicas del Producto"/>
+            </div>
+            
+            <div class="mb-3">
+                <label for="txtImagen" class="form-label">imagen:</label>
+                <input type="file" class="form-control" name="txtImagen" id="txtImagen" aria-describedby="helpId" placeholder="Seleccione del producto"/>
+            </div>
+
+            <div class="mb-3">
+                <label for="txtUrl" class="form-label">Url Producto:</label>
+                <input type="txtUrl" class="form-control" name="txtUrl" id="txtUrl" aria-describedby="helpId" placeholder="Descripcion del producto"/>
+            </div>
+            <button
+                type="submit"
+                class="btn btn-primary"
+            >
+                Agregar
+            </button>
+            
+        </form>
+
+    </div>
+    <div class="card-footer text-muted"></div>
+</div>
+
+        </div>
+        <div class="col-md-7">
+
+            <div
+                class="table-responsive"
+            >
+                <table class="table table-primary"
+                ><thead>
+                        <tr>
+                            <th scope="col">ID </th>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Imagen</th>
+                            <th scope="col">Url</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for producto in productos %}
+                        <tr>
+                            <td>{{ producto[0] }}</td>
+                            <td>{{ producto[1] }}</td>
+                            <td>
+                                <img width="60"
+                                    src="/img/{{ producto[2] }}"
+                                    class="img-fluid rounded-top"
+                                    alt=""
+                                />
+                                
+                                {{ producto[2] }}
+                            </td>
+                            <td>{{ producto[3] }}</td>
+                            <td>
+                                <form action="/admin/productos/borrar" method="post">
+                                    <input type="hidden" name="txtID" value="{{ producto[0] }}">
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
+                            </td>     
+                        </tr>
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+            </div>
+            
+            
+        </div>
+        
+    </div>
+</div>
+
+
+
+
+
+
+{% include 'admin/pie.html' %}
